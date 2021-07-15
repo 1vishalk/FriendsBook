@@ -1,0 +1,109 @@
+package data;
+
+import java.sql.*;
+import java.util.Scanner;
+public class connection 
+{
+	public static void main(String[] args) 
+	{
+		Scanner a=new Scanner(System.in);
+		System.out.println("1. Create \n 2. Insert \n 3. Update\n 4. Retrieve\n 5. Delete\n ");
+		int choice=a.nextInt();
+		switch(choice)
+	{
+		case 1:
+		try
+	{
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/sem","root","root");
+		Statement st=con.createStatement();
+		int rs=st.executeUpdate("create table Student1(id int, name varchar(5))");
+		if(rs==1)
+		System.out.println("database created successfully");
+		else
+		System.out.println("database not created");
+		con.close();
+	}
+		catch(Exception e)
+	{
+			System.out.println(e); 
+	}
+	
+	case 2:
+		try
+	{
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/sem","root","root");
+		Statement st=con.createStatement();
+		int rs=st.executeUpdate("Insert into Student1(id,name) values(3,'Nitin')");
+		if(rs==1)
+		System.out.println("Table Updated Successfully");
+		else
+		System.out.println("Table not updated");
+		con.close();
+	}
+		catch(Exception e)
+	{
+			System.out.println(e); 
+	}
+		
+	case 3:
+		try
+	{
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/sem","root","root");
+		Statement st=con.createStatement();
+		int rs=st.executeUpdate("Update table student1 set id=1 where name='Nitin' ");
+		if(rs==1)
+		System.out.println("Table Updated Successfully");
+		else
+		System.out.println("Table not updated");
+		con.close();
+	}
+		catch(Exception e)
+	{
+			System.out.println(e); 
+	}
+		
+	case 4:
+		try
+	{
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/sem","root","root");
+		Statement st=con.createStatement();
+		 ResultSet rs=st.executeQuery("Select * from student1 ");
+		while(rs.next())
+		{
+			int roll_no=rs.getInt(1);
+			String name=rs.getString(2);
+			System.out.println("rollno="+roll_no);
+		}
+		con.close();
+	}
+		catch(Exception e)
+	{
+			System.out.println(e); 
+	}
+		
+	case 5:
+		try
+	{
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/sem","root","root");
+		Statement st=con.createStatement();
+		int rs=st.executeUpdate("Delete from Student1 where id=3 ");
+		if(rs==1)
+		System.out.println("Table Deleted Successfully");
+		else
+		System.out.println("Table not Deleted");
+		con.close();
+	}
+		catch(Exception e)
+	{
+			System.out.println(e); 
+	}
+	}
+		
+	}
+	}	
+	
